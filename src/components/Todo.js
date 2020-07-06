@@ -1,6 +1,4 @@
 import React from 'react'
-import TodoList from './TodoList'
-import TodoForm from './TodoForm'
 
 class Todo extends React.Component {
   constructor() {
@@ -8,12 +6,16 @@ class Todo extends React.Component {
     this.state = {}
   }
 
+  displayTask() {
+    if (this.props.toDoItem.completed) return <s>{this.props.toDoItem.task}</s>
+    else return this.props.toDoItem.task
+  }
+
   render() {
     return (
       <div>
-        <div>Todo Component displayed</div>
-        <TodoList />
-        <TodoForm />
+        {this.displayTask()}
+        {/* {this.props.toDoItem.task} */}
       </div>
     )
   }
