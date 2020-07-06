@@ -24,7 +24,7 @@ class App extends React.Component {
     }
   }
 
-  addTask = (taskText) => {
+  addTask = (taskText) => { // it is adding a task only to be removed on the next render 0.o
     const newTask = {
       task: taskText,
       id: new Date(),
