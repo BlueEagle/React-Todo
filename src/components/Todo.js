@@ -11,10 +11,10 @@ class Todo extends React.Component {
     else return this.props.toDoItem.task
   }
 
-  click() {
-    debugger
-    this.props.toggleCompleted(this.props.toDoItem.id)
-  }
+  // click() {
+  //   debugger
+  //   this.props.toggleCompleted(this.props.toDoItem.id)
+  // }
 
   render() {
     return (
@@ -28,3 +28,22 @@ class Todo extends React.Component {
 }
 
 export default Todo
+
+// import React from 'react'
+
+// const Todo = (props) => {
+//    function displayTask() {
+//      if (props.toDoItem.completed) return <s>{props.toDoItem.task}</s>
+//      else return props.toDoItem.task
+//    }
+
+//   return (
+//     <div 
+//       onClick={() => props.toggleCompleted(props.toDoItem.id)}
+//     >
+//       {displayTask()}
+//     </div>
+//   )
+// }
+
+// export default Todo

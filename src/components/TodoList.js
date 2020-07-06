@@ -24,3 +24,24 @@ class TodoList extends React.Component {
 }
 
 export default TodoList
+
+// import React from 'react'
+// import Todo from './Todo'
+
+// const TodoList = (props) => {
+
+//   return (
+//     <div>
+//       <h1>Todo List:</h1>
+
+//       {
+//         props.tasks.map(task => (
+//           <Todo toDoItem={task} toggleCompleted={props.toggleCompleted}/>
+//         ))
+//       }
+
+//     </div>
+//   )
+// }
+
+// export default TodoList
