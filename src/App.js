@@ -1,19 +1,20 @@
 import React from 'react';
 import TodoList from './components/TodoList'
 import TodoForm from './components/TodoForm';
+import styled from 'styled-components'
 
 const initialValues = {
   todoData: [
-    {
-      task: 'Organize Garage',
-      id: 1528817077286,
-      completed: false
-    },
-    {
-      task: 'Bake Cookies',
-      id: 1528817084358,
-      completed: false
-    }
+    // {
+    //   task: 'Organize Garage',
+    //   id: 1528817077286,
+    //   completed: false
+    // },
+    // {
+    //   task: 'Bake Cookies',
+    //   id: 1528817084358,
+    //   completed: false
+    // }
   ],
   textInputValue: ''
 }
@@ -81,12 +82,26 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <TodoList tasks={this.state.todoData} toggleCompleted={this.toggleCompleted} />
-        <TodoForm addTask={this.addTask} textChangeHandler={this.textChangeHandler} formValue={this.state.textInputValue} deleteChecked={this.deleteChecked} deleteAll={this.deleteAll} />
-      </div>
+      <OuterContainer>
+        <ContainerDiv>
+          <TodoList tasks={this.state.todoData} toggleCompleted={this.toggleCompleted} />
+          <TodoForm addTask={this.addTask} textChangeHandler={this.textChangeHandler} formValue={this.state.textInputValue} deleteChecked={this.deleteChecked} deleteAll={this.deleteAll} />
+        </ContainerDiv>
+      </OuterContainer>
     );
   }
 }
 
 export default App;
+
+const OuterContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const ContainerDiv = styled.div`
+  width: 70%;
+  border-radius: 20px;
+  background-color: lightcyan;
+  padding: 3% 2%;
+`

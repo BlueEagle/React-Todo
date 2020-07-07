@@ -1,4 +1,5 @@
 import React from 'react'
+import styled from 'styled-components'
 
 class TodoForm extends React.Component {
   constructor() {
@@ -21,17 +22,29 @@ class TodoForm extends React.Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.submit}>
+      <StyledDiv>
+        <StyledForm onSubmit={this.submit}>
           <input type="text" placeholder="type here..." onChange={this.props.textChangeHandler} value={this.props.formValue}/>
           <button type="submit">Add</button>
           <button onClick={this.clear}>Clear checked</button>
           <button onClick={this.clearAll}>Clear all</button>
-        </form>
-        
-      </div>
+        </StyledForm>
+      </StyledDiv>
     )
   }
 }
 
 export default TodoForm
+
+const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const StyledForm = styled.form`
+  display: flex;
+  justify-content: center;
+  * {
+    margin: 2rem .5rem;
+  }
+`

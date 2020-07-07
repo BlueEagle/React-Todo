@@ -1,5 +1,6 @@
 import React from 'react'
 import Todo from './Todo'
+import styled from 'styled-components'
 
 class TodoList extends React.Component {
   constructor() {
@@ -9,7 +10,7 @@ class TodoList extends React.Component {
 
   render() {
     return (
-      <div>
+      <StyledTodoList>
         <h1>Todo List:</h1>
 
         {
@@ -18,30 +19,15 @@ class TodoList extends React.Component {
           ))
         }
 
-      </div>
+      </StyledTodoList>
     )
   }
 }
 
 export default TodoList
 
-// import React from 'react'
-// import Todo from './Todo'
-
-// const TodoList = (props) => {
-
-//   return (
-//     <div>
-//       <h1>Todo List:</h1>
-
-//       {
-//         props.tasks.map(task => (
-//           <Todo toDoItem={task} toggleCompleted={props.toggleCompleted}/>
-//         ))
-//       }
-
-//     </div>
-//   )
-// }
-
-// export default TodoList
+const StyledTodoList = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
