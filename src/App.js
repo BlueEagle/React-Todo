@@ -1,6 +1,23 @@
 import React from 'react';
 import TodoList from './components/TodoList'
 import TodoForm from './components/TodoForm';
+import styled from 'styled-components'
+
+const initialValues = {
+  todoData: [
+    // {
+    //   task: 'Organize Garage',
+    //   id: 1528817077286,
+    //   completed: false
+    // },
+    // {
+    //   task: 'Bake Cookies',
+    //   id: 1528817084358,
+    //   completed: false
+    // }
+  ],
+  textInputValue: ''
+}
 
 class App extends React.Component {
   // you will need a place to store your state in this component.
@@ -8,35 +25,10 @@ class App extends React.Component {
   // this component is going to take care of state, and any change handlers you need to work with your state
   constructor() {
     super()
-    this.state = {
-      todoData: [
-        {
-          task: 'Organize Garage',
-          id: 1528817077286,
-          completed: false
-        },
-        {
-          task: 'Bake Cookies',
-          id: 1528817084358,
-          completed: false
-        }
-      ]
-    }
+    this.state = initialValues
   }
 
-  addTask = (taskText) => {
-    const newTask = {
-      task: taskText,
-      id: new Date(),
-      completed: false
-    }
-    this.setState({
-      ...this.state,
-      todoData: [...this.state.todoData, newTask]
-    })
-  }
-
-  toggleCompleted = (taskId) => {
+  toggleCompleted = taskId => {
     this.setState({
       ...this.state,
       todoData: this.state.todoData.map(task => {
@@ -51,15 +43,65 @@ class App extends React.Component {
       })
     })
   }
+  
+  addTask = () => {
+    const newTask = {
+      task: this.state.textInputValue,
+      id: new Date(),
+      completed: false
+    }
+
+    this.setState({
+      ...this.state,
+      todoData: [...this.state.todoData, newTask],
+      textInputValue: ''
+    })
+  }
+
+  textChangeHandler = e => {
+    this.setState({
+      ...this.state,
+      textInputValue: e.target.value
+    })
+  }
+
+  deleteChecked = () => {
+    this.setState({
+      ...this.state,
+      todoData: this.state.todoData.filter(task => !task.completed)
+    })
+  }
+
+  deleteAll = () => {
+    this.setState({
+      ...this.state,
+      todoData: ['']
+    })
+  }
+
 
   render() {
     return (
-      <div>
-        <TodoList tasks={this.state.todoData} toggleCompleted={this.toggleCompleted} />
-        <TodoForm addTask={this.addTask} />
-      </div>
+      <OuterContainer>
+        <ContainerDiv>
+          <TodoList tasks={this.state.todoData} toggleCompleted={this.toggleCompleted} />
+          <TodoForm addTask={this.addTask} textChangeHandler={this.textChangeHandler} formValue={this.state.textInputValue} deleteChecked={this.deleteChecked} deleteAll={this.deleteAll} />
+        </ContainerDiv>
+      </OuterContainer>
     );
   }
 }
 
 export default App;
+
+const OuterContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+const ContainerDiv = styled.div`
+  width: 70%;
+  border-radius: 20px;
+  background-color: lightcyan;
+  padding: 3% 2%;
+`
