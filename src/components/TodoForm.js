@@ -10,14 +10,21 @@ class TodoForm extends React.Component {
     e.preventDefault()
     this.props.addTask()
   }
+  clear = (e) => {
+    e.preventDefault()
+    this.props.deleteChecked()
+  }
 
   render() {
     return (
-      <form onSubmit={this.submit}>
-        <input type="text" placeholder="type here..." onChange={this.props.textChangeHandler} value={this.props.formValue}/>
-        <button>Add</button>
-        <button>Clear checked</button>
-      </form>
+      <div>
+        <form onSubmit={this.submit}>
+          <input type="text" placeholder="type here..." onChange={this.props.textChangeHandler} value={this.props.formValue}/>
+          <button type="submit">Add</button>
+          <button onClick={this.clear}>Clear checked</button>
+        </form>
+        
+      </div>
     )
   }
 }

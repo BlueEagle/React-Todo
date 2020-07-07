@@ -62,12 +62,19 @@ class App extends React.Component {
     })
   }
 
+  deleteChecked = () => {
+    this.setState({
+      ...this.state,
+      todoData: this.state.todoData.filter(task => !task.completed)
+    })
+  }
+
 
   render() {
     return (
       <div>
         <TodoList tasks={this.state.todoData} toggleCompleted={this.toggleCompleted} />
-        <TodoForm addTask={this.addTask} textChangeHandler={this.textChangeHandler} formValue={this.state.textInputValue}/>
+        <TodoForm addTask={this.addTask} textChangeHandler={this.textChangeHandler} formValue={this.state.textInputValue} deleteChecked={this.deleteChecked} />
       </div>
     );
   }
