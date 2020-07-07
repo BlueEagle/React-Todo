@@ -20,23 +20,12 @@ class App extends React.Component {
           id: 1528817084358,
           completed: false
         }
-      ]
+      ],
+      textInputValue: ''
     }
   }
-
-  addTask = (taskText) => { // it is adding a task only to be removed on the next render 0.o
-    const newTask = {
-      task: taskText,
-      id: new Date(),
-      completed: false
-    }
-    this.setState({
-      ...this.state,
-      todoData: [...this.state.todoData, newTask]
-    })
-  }
-
-  toggleCompleted = (taskId) => {
+  
+  toggleCompleted = taskId => {
     this.setState({
       ...this.state,
       todoData: this.state.todoData.map(task => {
@@ -51,12 +40,34 @@ class App extends React.Component {
       })
     })
   }
+  
+  addTask = () => {
+    const newTask = {
+      task: this.state.textInputValue,
+      id: new Date(),
+      completed: false
+    }
+
+    this.setState({
+      ...this.state,
+      todoData: [...this.state.todoData, newTask],
+      textInputValue: ''
+    })
+  }
+
+  textChangeHandler = e => {
+    this.setState({
+      ...this.state,
+      textInputValue: e.target.value
+    })
+  }
+
 
   render() {
     return (
       <div>
         <TodoList tasks={this.state.todoData} toggleCompleted={this.toggleCompleted} />
-        <TodoForm addTask={this.addTask} />
+        <TodoForm addTask={this.addTask} textChangeHandler={this.textChangeHandler} formValue={this.state.textInputValue}/>
       </div>
     );
   }

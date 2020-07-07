@@ -8,13 +8,13 @@ class TodoForm extends React.Component {
 
   submit = (e) => {
     e.preventDefault()
-    this.props.addTask('test')
+    this.props.addTask()
   }
 
   render() {
     return (
       <form onSubmit={this.submit}>
-        <input type="text" placeholder="type here..."/>
+        <input type="text" placeholder="type here..." onChange={this.props.textChangeHandler} value={this.props.formValue}/>
         <button>Add</button>
         <button>Clear checked</button>
       </form>
@@ -23,4 +23,3 @@ class TodoForm extends React.Component {
 }
 
 export default TodoForm
-// () => {this.props.addTask('test')
