@@ -6,11 +6,16 @@ class TodoForm extends React.Component {
     this.state = {}
   }
 
+  submit = (e) => {
+    e.preventDefault()
+    this.props.addTask('test')
+  }
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.submit}>
         <input type="text" placeholder="type here..."/>
-        <button onClick={() => {this.props.addTask('test')}}>Add</button>
+        <button>Add</button>
         <button>Clear checked</button>
       </form>
     )
@@ -18,3 +23,4 @@ class TodoForm extends React.Component {
 }
 
 export default TodoForm
+// () => {this.props.addTask('test')
