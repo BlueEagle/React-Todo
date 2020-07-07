@@ -14,6 +14,10 @@ class TodoForm extends React.Component {
     e.preventDefault()
     this.props.deleteChecked()
   }
+  clearAll = e => {
+    e.preventDefault()
+    this.props.deleteAll()
+  }
 
   render() {
     return (
@@ -22,6 +26,7 @@ class TodoForm extends React.Component {
           <input type="text" placeholder="type here..." onChange={this.props.textChangeHandler} value={this.props.formValue}/>
           <button type="submit">Add</button>
           <button onClick={this.clear}>Clear checked</button>
+          <button onClick={this.clearAll}>Clear all</button>
         </form>
         
       </div>
